@@ -6,11 +6,12 @@ This test is designed for applicants to ML/LLM Engineer positions within Free.
 ## Context
 Free has local technical support teams operating in various regions across the country. They primarily use a chat interface to address client issues.
 
-## Objective
+## Objectives
 Create a bot that provides the most relevant answers possible using the data dump from https://assistance.free.fr (provided in assistance.sqlite3).
 
-## Technical Requirements
+## Requirements
 
+- Fork this repository into a private repository. You'll have to grant us access.
 - You can use any openly available data models through:
   - Prompt engineering
   - Fine-tuning
@@ -22,7 +23,6 @@ Create a bot that provides the most relevant answers possible using the data dum
 
 ## Computing Resources
 If you need computing resources, we can provide a Node with GPU access for a 3-hour block. Send your SSH public key to:
-- nlamarque@iliad-free.fr
 - jgodfroy@iliad-free.fr
 - yzerbib@iliad-free.fr
 
@@ -31,14 +31,11 @@ If you need computing resources, we can provide a Node with GPU access for a 3-h
 2. Discussion about the evaluation methodology
 
 ## Deliverables
-1. Merge request to the main branch with the project implementation
+1. Pull request from your fork to the main branch
 2. Brief abstract explaining your solution reasoning
 
 ## Timeline and Contact
 - Duration: One week
 - To schedule a results presentation, contact:
-  - nlamarque@iliad-free.fr
   - jgodfroy@iliad-free.fr
   - yzerbib@iliad-free.fr
-
-Feel free to ask for any additional information or assistance.
