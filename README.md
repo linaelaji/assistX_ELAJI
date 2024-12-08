@@ -11,8 +11,8 @@ Create a bot that provides the most relevant answers possible using the data dum
 
 ## Requirements
 
-- Fork this repository into a private repository. You'll have to grant us access.
-- You can use any openly available data models through:
+- Fork this repository into a **private repository**. You'll have to grant us access to jugodfroy and YohannZe before the interview.
+- You can use any openly available techniques through:
   - Prompt engineering
   - Fine-tuning
   - Other techniques
@@ -31,7 +31,7 @@ If you need computing resources, we can provide a Node with GPU access for a 3-h
 2. Discussion about the evaluation methodology
 
 ## Deliverables
-1. Pull request from your fork to the main branch
+1. Access to your private repository
 2. Brief abstract explaining your solution reasoning
 
 ## Timeline and Contact
