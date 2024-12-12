@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProXigen</title>
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="static/css/styles.css" />
+  </head>
+  <body>
+    <div id="reset-selector" class="reset-selector">
+      <button id="reset-button" class="selected-model">Reset</button>
+    </div>
+
+    <div id="model-selector" class="model-selector">
+      <button id="selected-model" class="selected-model">
+        Groq Llama-3 8B <span class="dropdown-arrow">&#9660;</span>
+      </button>
+      <div id="model-options" class="model-options">
+        <div class="model-option" onclick="updateModel('groq')">
+          Groq Llama-3 8B
+        </div>
+        <div class="model-option" onclick="updateModel('ollama')">ollama</div>
+      </div>
+    </div>
+
+    <div id="main-container">
+      <div id="chat-container">
+        <header onclick="logoClick()">
+          <img src="static/logo.png" alt="ProXigen Logo" id="logo" />
+        </header>
+        <div id="chat-box"></div>
+        <div id="chat-input-container">
+          <textarea
+            id="chat-input"
+            placeholder="Tapez votre message ici..."
+            autofocus
+          ></textarea>
+          <button id="send-button" onclick="sendMessage()">Envoyer</button>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+    <script src="static/js/script.js"></script>
+  </body>
+</html>

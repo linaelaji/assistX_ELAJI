@@ -7,35 +7,27 @@ This test is designed for applicants to ML/LLM Engineer positions within Free.
 Free has local technical support teams operating in various regions across the country. They primarily use a chat interface to address client issues.
 
 ## Objectives
-Create a bot that provides the most relevant answers possible using the data dump from https://assistance.free.fr (provided in assistance.sqlite3).
+In this repo, you'll find a python chatbot-like webapp soucring answer from Free knowledge base. Your goal is to adopt this project, improve the actual basic information, to showcase your ability to understand a small project and build on top of it.
+
 
 ## Requirements
-
+- Create a copy of this repository project ([here](https://github.com/users/jugodfroy/projects/1)) by clicking "Make a copy" button
 - Fork this repository into a **private repository**. You'll have to grant us access to jugodfroy and YohannZe before the interview.
-- You can use any openly available techniques through:
-  - Prompt engineering
-  - Fine-tuning
-  - Other techniques
-- **Restrictions:**
-  - No Langchain/LlamaIndex (or other "oneclick" frameworks)
-  - Preferably use models under 15B parameters
-  - Any other stacks are permitted for building the chatbot
+- Attach the copied project to your private repoistory
+
+In the repository Project, you'll find a kanban board with several user stories in backlog. You'll have to pick several user stories to implement. You can also add your own user stories you think relevant.
 
 ## Computing Resources
 If you need computing resources, we can provide a Node with GPU access for a 3-hour block. Send your SSH public key to:
 - jgodfroy@iliad-free.fr
 - yzerbib@iliad-free.fr
 
-## Evaluation Criteria
-1. Performance on a test set of questions compared to other solutions
-2. Discussion about the evaluation methodology
-
 ## Deliverables
 1. Access to your private repository
-2. Brief abstract explaining your solution reasoning
+2. Brief abstract explaining what you've done, and why.
 
 ## Timeline and Contact
-- Duration: One week
-- To schedule a results presentation, contact:
+- Deadline: One week
+- To schedule the interview, contact:
   - jgodfroy@iliad-free.fr
   - yzerbib@iliad-free.fr
