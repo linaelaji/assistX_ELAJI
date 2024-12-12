@@ -51,7 +51,7 @@ class ChatHandler(tornado.websocket.WebSocketHandler):
                     {'role': 'proxigen', 'content': response, 'is_complete': True})
 
             elif model == 'ollama':
-                print('ollama implementation')
+                print('##### ollama LLM to be implemented #####')
 
     def on_close(self):
         print("WebSocket closed")
