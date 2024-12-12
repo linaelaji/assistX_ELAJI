@@ -7,7 +7,7 @@ This test is designed for applicants to ML/LLM Engineer positions within Free.
 Free has local technical support teams operating in various regions across the country. They primarily use a chat interface to address client issues.
 
 ## Objectives
-In this repo, you'll find a python chatbot-like webapp soucring answer from Free knowledge base. Your goal is to adopt this project, improve the actual basic information, to showcase your ability to understand a small project and build on top of it.
+In this repo, you'll find a python chatbot-like webapp soucring answer from Free knowledge base. Your goal is to adopt this project, improve the actual basic implementation, to showcase your ability to understand a small project and build on top of it.
 
 
 ## Requirements
