@@ -86,7 +86,7 @@ def make_app():
         (r"/reset", ResetHandler, dict(conversation_history=conversation_history)),
     ],
         static_path=static_path,
-        cookie_secret="DATAX",
+        cookie_secret="",
         debug=True,
         compiled_template_cache=False)
 
