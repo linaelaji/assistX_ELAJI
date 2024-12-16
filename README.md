@@ -11,9 +11,26 @@ In this repository, you'll find a python chatbot-like webapp soucring answer fro
 
 
 ## Requirements
-- Create a copy of this repository project ([here](https://github.com/users/jugodfroy/projects/1)) by clicking "Make a copy" button
-- Fork this repository into a **private repository**. You'll have to grant us access (jugodfroy and YohannZe) before the interview.
-- Attach the copied project to your private repoistory
+### Project Setup
+1. Create a private fork of this repository
+   - Click "Make a copy" of [this project board](https://github.com/users/jugodfroy/projects/1)
+   - Fork the repository and set it as private
+   - Grant access to project reviewers (jugodfroy and YohannZe)
+   - Link the copied project board to your private repository
+
+### Environment Setup
+1. Install Ollama
+   - Follow the installation guide at [ollama.ai/download](https://ollama.ai/download)
+   - Download the text embedding model: `ollama pull nomic-embed-text`
+
+2. Configure Groq API
+   - Generate a free API key from [Groq Console](https://console.groq.com/keys)
+   - Add your API key to the `server.py` file
+
+3. Application Setup
+   - Install dependencies: `pip install -r requirements.txt`
+   - Start the server: `python server.py`
+   - Access the application at `http://localhost:8888/`
 
 In the repository Project, you'll find a kanban board with several user stories in backlog. Pick several user stories and implement them. You can also add or implement other user stories you think relevant.
 

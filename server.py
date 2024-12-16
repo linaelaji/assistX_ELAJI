@@ -4,10 +4,9 @@ import tornado.web
 import tornado.websocket
 import json
 from helper import query_with_groq_api, load_data, generate_embeddings, load_embeddings, search_similar_documents
-from dotenv import load_dotenv
 from concurrent.futures import ThreadPoolExecutor
 
-load_dotenv()
+GROQ_API_KEY = ""
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -43,8 +42,8 @@ class ChatHandler(tornado.websocket.WebSocketHandler):
                 {"type": "docs", "documents": similar_docs}))
 
             if model == "groq":
-                response = query_with_groq_api(user_input, os.getenv(
-                    'GROQ_API_KEY'), self.conversation_history, similar_docs)
+                response = query_with_groq_api(
+                    user_input, GROQ_API_KEY, self.conversation_history, similar_docs)
 
                 self.write_message({"content": response, "is_complete": True})
                 self.conversation_history.append(
@@ -66,32 +65,28 @@ class ResetHandler(tornado.web.RequestHandler):
         self.write(json.dumps({"status": "Conversation history reset"}))
 
 
-def make_app():
-    df = load_data()
-    print(df.head())
-    if not os.path.exists('data/embeddings.npy'):
-        print("Generating embeddings for knowledge base...")
-        generate_embeddings(df)
-    embeddings = load_embeddings()
+df = load_data()
+print(df.head())
 
-    conversation_history = []
-    executor = ThreadPoolExecutor()
+if not os.path.exists('data/embeddings.npy'):
+    print("Generating embeddings for knowledge base...")
+    generate_embeddings(df)
 
-    static_path = os.path.join(os.path.dirname(__file__), "static")
+embeddings = load_embeddings()
 
-    return tornado.web.Application([
-        (r"/", MainHandler),
-        (r"/chat", ChatHandler, dict(df=df, embeddings=embeddings,
-         conversation_history=conversation_history, executor=executor)),
-        (r"/reset", ResetHandler, dict(conversation_history=conversation_history)),
-    ],
-        static_path=static_path,
-        cookie_secret="",
-        debug=True,
-        compiled_template_cache=False)
+# Initialize required variables
+conversation_history = []
+executor = ThreadPoolExecutor()
 
 
-if __name__ == "__main__":
-    app = make_app()
-    app.listen(8888, address='0.0.0.0')
-    tornado.ioloop.IOLoop.current().start()
+# Create and configure application
+app = tornado.web.Application([
+    (r"/", MainHandler),
+    (r"/chat", ChatHandler, dict(df=df, embeddings=embeddings,
+     conversation_history=conversation_history, executor=executor)),
+    (r"/reset", ResetHandler, dict(conversation_history=conversation_history)),
+],
+    static_path=os.path.join(os.path.dirname(__file__), "static")
+).listen(8888)
+
+tornado.ioloop.IOLoop.current().start()

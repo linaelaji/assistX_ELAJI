@@ -6,7 +6,6 @@ import requests
 from groq import Groq
 import json
 import logging
-import re
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
@@ -14,7 +13,7 @@ logging.basicConfig(level=logging.DEBUG,
 
 def load_data():
     """Load and prepare data from the SQLite database."""
-    conn = sqlite3.connect('data/assistance.sqlite3')
+    conn = sqlite3.connect('data/assistance.sqlite')
     df = pd.read_sql_query("SELECT * FROM assistance", conn)
     conn.close()
     df['full_content'] = df.apply(
