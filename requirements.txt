@@ -4,4 +4,3 @@ numpy
 tornado
 requests
 groq
-python-dotenv
