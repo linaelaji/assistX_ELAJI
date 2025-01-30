@@ -15,7 +15,7 @@ In this repository, you'll find a python chatbot-like webapp soucring answer fro
 1. Create a private fork of this repository
    - Click "Make a copy" of [this project board](https://github.com/users/jugodfroy/projects/1)
    - Fork the repository and set it as private
-   - Grant access to project reviewers (jugodfroy and YohannZe)
+   - Grant access to project reviewers (jugodfroy, YohannZe, Ashitaka06)
    - Link the copied project board to your private repository
 
 ### Environment Setup
@@ -38,6 +38,7 @@ In the repository Project, you'll find a kanban board with several user stories 
 If you need computing resources, we can provide a Node with GPU access for a 3-hour block. Send your SSH public key to:
 - jgodfroy@iliad-free.fr
 - yzerbib@iliad-free.fr
+- nlamarque@iliad-free.fr
 
 ## Deliverables
 1. Access to your private repository
@@ -48,3 +49,5 @@ If you need computing resources, we can provide a Node with GPU access for a 3-h
 - To schedule the interview, contact:
   - jgodfroy@iliad-free.fr
   - yzerbib@iliad-free.fr
+  - nlamarque@iliad-free.fr
+
