@@ -6,7 +6,7 @@ import json
 from helper import query_with_groq_api, load_data, generate_embeddings, load_embeddings, search_similar_documents
 from concurrent.futures import ThreadPoolExecutor
 
-GROQ_API_KEY = ""
+GROQ_API_KEY = os.environ["GROQ_API_KEY"]
 
 
 class MainHandler(tornado.web.RequestHandler):
