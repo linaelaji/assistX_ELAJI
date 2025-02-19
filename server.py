@@ -1,6 +1,7 @@
 import os
 import tornado.ioloop
 import tornado.web
+import faiss
 import tornado.websocket
 import json
 from helper import query_with_groq_api, load_data, generate_embeddings, load_embeddings, search_similar_documents
@@ -15,8 +16,10 @@ class MainHandler(tornado.web.RequestHandler):
 
 
 class ChatHandler(tornado.websocket.WebSocketHandler):
-    def initialize(self, df, embeddings, conversation_history, executor):
+
+    def initialize(self, df, index, embeddings, conversation_history, executor):
         self.df = df
+        self.index = index  # Ajout de l'index FAISS
         self.embeddings = embeddings
         self.conversation_history = conversation_history
         self.executor = executor
@@ -33,14 +36,16 @@ class ChatHandler(tornado.websocket.WebSocketHandler):
         self.conversation_history.append(
             {'role': 'client', 'content': user_input})
 
+        
         if user_input:
             print(user_input, model)
             print("Start embedding the question")
             similar_docs = search_similar_documents(
-                self.df, user_input, self.embeddings)
+                self.df, user_input, self.index, self.embeddings)  # Ajout de l'index
             self.write_message(json.dumps(
                 {"type": "docs", "documents": similar_docs}))
 
+            
             if model == "groq":
                 response = query_with_groq_api(
                     user_input, GROQ_API_KEY, self.conversation_history, similar_docs)
@@ -49,8 +54,7 @@ class ChatHandler(tornado.websocket.WebSocketHandler):
                 self.conversation_history.append(
                     {'role': 'proxigen', 'content': response, 'is_complete': True})
 
-            elif model == 'ollama':
-                print('##### ollama LLM to be implemented #####')
+        
 
     def on_close(self):
         print("WebSocket closed")
@@ -74,6 +78,11 @@ if not os.path.exists('data/embeddings.npy'):
 
 embeddings = load_embeddings()
 
+ # Créer l'index FAISS
+dimension = 768  # dimension de nomic-embed-text
+index = faiss.IndexFlatL2(dimension)
+index.add(embeddings)
+
 # Initialize required variables
 conversation_history = []
 executor = ThreadPoolExecutor()
@@ -82,9 +91,13 @@ executor = ThreadPoolExecutor()
 # Create and configure application
 app = tornado.web.Application([
     (r"/", MainHandler),
-    (r"/chat", ChatHandler, dict(df=df, embeddings=embeddings,
-     conversation_history=conversation_history, executor=executor)),
-    (r"/reset", ResetHandler, dict(conversation_history=conversation_history)),
+    (r"/chat", ChatHandler, dict(
+        df=df, 
+        index=index,  # Ajout de l'index
+        embeddings=embeddings,
+        conversation_history=conversation_history, 
+        executor=executor
+    )),(r"/reset", ResetHandler, dict(conversation_history=conversation_history)),
 ],
     static_path=os.path.join(os.path.dirname(__file__), "static")
 ).listen(8888)
