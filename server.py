@@ -6,6 +6,7 @@ import tornado.websocket
 import json
 from helper import query_with_groq_api, load_data, generate_embeddings, load_embeddings, search_similar_documents
 from concurrent.futures import ThreadPoolExecutor
+import asyncio
 
 GROQ_API_KEY = os.environ["GROQ_API_KEY"]
 
@@ -41,10 +42,10 @@ class ChatHandler(tornado.websocket.WebSocketHandler):
             print(user_input, model)
             print("Start embedding the question")
             similar_docs = search_similar_documents(
-                self.df, user_input, self.index, self.embeddings)  # Ajout de l'index
+                self.df, user_input, self.index)  
             self.write_message(json.dumps(
                 {"type": "docs", "documents": similar_docs}))
-
+        
             
             if model == "groq":
                 response = query_with_groq_api(
@@ -54,10 +55,11 @@ class ChatHandler(tornado.websocket.WebSocketHandler):
                 self.conversation_history.append(
                     {'role': 'proxigen', 'content': response, 'is_complete': True})
 
-        
+           
 
     def on_close(self):
         print("WebSocket closed")
+
 
 
 class ResetHandler(tornado.web.RequestHandler):
